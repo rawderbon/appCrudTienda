@@ -1,0 +1,68 @@
+<div class="container">
+
+
+  <form  [formGroup]="form">
+    <div class="card">
+      <div class="card-header">
+        Tienda
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label>Cliente:</label>
+          <input type="text" class="form-control" id="cliente" formControlName="cliente">
+        </div>
+
+
+
+
+        
+
+
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">codigo</th>
+                <th scope="col">producto</th>
+                <th scope="col">valor unitario</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">valor total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of items,let indice=index" [title]="item.name">
+                <th scope="row">{{ indice+1 }}</th>
+                <td>{{ item.producto.id }}</td>
+                <td>{{ item.producto.name}}</td>
+                <td>{{ item.producto.valor }}</td>
+                <td>{{ item.cantidad }}</td>
+                <td>{{ item.valor_total }}</td>
+                <td>
+                  <button (click)="removerDetalle(item)" class="btn btn-warning">-</button>
+
+                </td>
+              </tr>
+
+
+            </tbody>
+          </table>
+        
+        <div class="form-group">
+          <label>Valor total a pagar:</label>
+          <input type="text" class="form-control" disabled="true" style="width: 200px;" id="valor_total"
+            formControlName="valor_total" [(ngModel)]="valorTotal">
+        </div>
+
+
+
+        <div class="card-footer">
+          <button (click)="listar()" class="btn btn-info">Nueva Factura</button>
+          <button (click)="guardarFactura()" class="btn btn-success" style="margin-left:10px;">Facturar</button>
+          <button (click)="cancelar()" class="btn btn-danger" style="margin-left:10px;">Cancelar</button>
+        </div>
+      </div> 
+    </div>
+  </form>
+</div>
+
+<router-outlet></router-outlet>
